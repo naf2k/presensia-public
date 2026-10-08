@@ -1,0 +1,34 @@
+{
+  "name": "presensia",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Presensia — Platform Presensi & Monitoring PKL/Magang Diskominfo Provinsi Banten. Monorepo foundation (stack only, no business logic).",
+  "packageManager": "pnpm@12.4.2",
+  "engines": {
+    "node": ">=20 <27",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "dev:admin": "turbo run dev --filter=@presensia/admin",
+    "dev:mobile": "turbo run start --filter=@presensia/mobile",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "backend:dry-run": "supabase db push --dry-run",
+    "backend:deploy": "supabase config push && supabase db push && supabase functions deploy --use-api",
+    "backend:deploy:with-seed": "supabase config push && supabase db push --include-seed && supabase functions deploy --use-api",
+    "backend:test:db": "supabase test db",
+    "backend:test:cloud": "node scripts/backend-cloud-test.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.4",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.70.0"
+  }
+}

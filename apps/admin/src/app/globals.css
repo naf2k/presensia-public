@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@import "../styles/tokens.css";
+@import "../styles/components.css";
+@import "../styles/admin.css";
+
+/* Presensia design tokens — PRD §21.2 + prototype snapshot.
+   Single source: @presensia/constants COLOR_TOKENS. */
+
+/* Paritas prototype: Tailwind Preflight mereset heading ke inherit.
+   Prototype mengandalkan bold bawaan browser. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+/* Paritas login: tombol recovery memakai visual anchor prototype 11px. */
+.login-options .text-link {
+  font-size: 11px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.login-options .text-link:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Paritas foto: img nyata mengisi .photo-stage, meta tetap overlay. */
+.photo-stage.has-photo {
+  display: block;
+  padding: 0;
+}
+.photo-stage.has-photo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-stage.has-photo::before,
+.photo-stage.has-photo::after {
+  content: none;
+}
+
+/* Paritas tabel kehadiran: thumb tetap 28px walau berupa button. */
+button.photo-thumb {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+@theme inline {
+  --color-primary: #b85c42;
+  --color-primary-deep: #944631;
+  --color-primary-soft: #f4e2dc;
+  --color-primary-ink: #823c2a;
+  --color-secondary: #74866a;
+  --color-secondary-deep: #55664e;
+  --color-secondary-soft: #e5ebe1;
+  --color-background: #f7f4ef;
+  --color-surface: #ffffff;
+  --color-surface-2: #f0ece6;
+  --color-line: #ded8cf;
+  --color-line-soft: #ece7df;
+  --color-ink: #252421;
+  --color-muted: #6d6963;
+  --color-success: #52705a;
+  --color-success-soft: #e3ece5;
+  --color-success-ink: #3e5d47;
+  --color-warning: #d58a32;
+  --color-amber-soft: #f8e8cf;
+  --color-amber-ink: #7b4c0e;
+  --color-danger: #c34f4f;
+  --color-danger-soft: #f8e2df;
+  --color-danger-ink: #99302b;
+  --color-slate-soft: #e8e6e2;
+  --color-slate-ink: #504c47;
+  --font-sans: var(--font-plus-jakarta);
+  --radius-card: 1rem;
+}
+
+/* Drawer sidebar versi React (menggantikan checkbox .nav-toggle pada prototype). */
+@media (max-width: 1180px) {
+  .shell-open .sidebar {
+    visibility: visible;
+    transform: translateX(0);
+    transition-delay: 0s;
+  }
+  .shell-open .nav-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 25;
+    border: 0;
+    background: rgb(37 36 33 / 0.42);
+    cursor: pointer;
+  }
+}
+
+/* Anchor yang memakai class button prototype mewarisi warna teks. */
+a.more-button,
+a.filter-button {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* Paritas shell: prototype memakai <a>/<label> untuk nav-item dan menu-button,
+   implementasi memakai <button> sehingga perlu reset chrome bawaan browser. */
+button.nav-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.menu-button {
+  border: 0;
+  background: transparent;
+}
+
+/* Thumb foto yang dapat diklik tetap terlihat seperti span prototype. */
+button.photo-thumb {
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Inisial dinamis pada photo-stage (prototype memakai ::after statis "NS"). */
+.photo-stage[data-initials]::after {
+  content: attr(data-initials);
+}
+
+/* Skeleton + toast states (tidak ada di prototype, memakai token yang sama). */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.7), transparent);
+  animation: skeleton-shimmer 1.4s infinite;
+}
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.toast-stack {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: grid;
+  gap: 10px;
+  width: min(360px, calc(100vw - 40px));
+}
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 15px;
+  border-radius: 13px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  box-shadow: var(--shadow-pop);
+}
+.toast svg {
+  width: 17px;
+  flex: none;
+}
+.toast-success svg {
+  color: #9dc3a7;
+}
+.toast-error {
+  background: #4a2220;
+}
+.field-error {
+  color: var(--danger-ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+.input-invalid {
+  border-color: var(--danger) !important;
+}

@@ -1,0 +1,81 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  font-weight: 800;
+  font-size: 13px;
+}
+.av-pine {
+  background: var(--success-soft);
+  color: var(--success-ink);
+}
+.av-amber {
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+}
+.av-slate {
+  background: var(--slate-soft);
+  color: var(--slate-ink);
+}
+.av-rose {
+  background: var(--primary-soft);
+  color: var(--primary-ink);
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.status .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+.status small {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 12px;
+}
+.status-hadir {
+  color: var(--success-ink);
+}
+.status-hadir .dot {
+  background: var(--success);
+}
+.status-telat {
+  color: var(--amber-ink);
+}
+.status-telat .dot {
+  background: #c07d25;
+}
+.status-izin {
+  color: var(--slate-ink);
+}
+.status-izin .dot {
+  background: #8a948e;
+}
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: top 160ms var(--ease-out);
+}
+.skip:focus {
+  top: 12px;
+}

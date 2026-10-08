@@ -1,0 +1,44 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# builds
+dist/
+build/
+.next/
+out/
+.expo/
+.eas/
+
+# turbo
+.turbo/
+
+# env — never commit real secrets (PRD SEC-005)
+.env
+.env*.local
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+*.pem
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# supabase
+supabase/.branches/
+supabase/.temp/
+
+# misc
+*.tsbuildinfo
+coverage/
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json
+.vercel
+.env*

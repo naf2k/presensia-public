@@ -1,0 +1,8 @@
+node_modules
+.next
+dist
+build
+.expo
+prototype
+pnpm-lock.yaml
+PRD_Presensia_v1.0.md
